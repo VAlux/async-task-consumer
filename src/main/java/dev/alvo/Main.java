@@ -11,11 +11,6 @@ public class Main {
 
     final var stringMessageConsumer = new MessageConsumer<String>() {
       @Override
-      public Class<String> consumableDataType() {
-        return String.class;
-      }
-
-      @Override
       public boolean consume(Message<String> message) {
         System.out.println(Thread.currentThread().getName() + " thread consumed STRING message: " + message.data());
         return true;
@@ -23,11 +18,6 @@ public class Main {
     };
 
     final var intMessageConsumer = new MessageConsumer<Integer>() {
-      @Override
-      public Class<Integer> consumableDataType() {
-        return Integer.class;
-      }
-
       @Override
       public boolean consume(Message<Integer> message) {
         System.out.println(Thread.currentThread().getName() + " thread consumed INTEGER message: " + message.data());

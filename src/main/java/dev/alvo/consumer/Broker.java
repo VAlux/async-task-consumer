@@ -21,7 +21,7 @@ public final class Broker {
   public <T> void register(final MessageConsumer<T> consumer, String topicName) {
     final TopicConsumerAssociation<?> existingTopic = registry.get(topicName);
     if (existingTopic != null) {
-      if (existingTopic.getDataType().equals(consumer.consumableDataType())) {
+      if (existingTopic.getDataType().equals(consumer.getConsumableDataType())) {
         ((List<MessageConsumer<T>>) existingTopic.getConsumers()).add(consumer);
       } else {
         throw new RuntimeException("This topic can't handle messages of the corresponding type");
@@ -32,7 +32,7 @@ public final class Broker {
           new TopicConsumerAssociation<>(
               new Topic<>(topicName),
               new ArrayList<>(List.of(consumer)),
-              consumer.consumableDataType()));
+              consumer.getConsumableDataType()));
     }
   }
 

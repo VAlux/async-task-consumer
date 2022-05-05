@@ -2,8 +2,17 @@ package dev.alvo.consumer;
 
 import dev.alvo.Message;
 
-public interface MessageConsumer<T> {
-  Class<T> consumableDataType();
+import java.lang.reflect.ParameterizedType;
 
-  boolean consume(final Message<T> message);
+public abstract class MessageConsumer<T> {
+
+  @SuppressWarnings("unchecked")
+  private final Class<T> consumableDataType =
+      (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+
+  public Class<T> getConsumableDataType() {
+    return consumableDataType;
+  }
+
+  public abstract boolean consume(final Message<T> message);
 }

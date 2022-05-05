@@ -2,8 +2,6 @@ package dev.alvo.consumer;
 
 import dev.alvo.Message;
 import dev.alvo.Topic;
-import dev.alvo.consumer.MessageConsumer;
-import dev.alvo.consumer.MessageQueueProcessor;
 
 import java.util.List;
 import java.util.Optional;
